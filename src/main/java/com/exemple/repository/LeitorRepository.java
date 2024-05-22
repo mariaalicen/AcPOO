@@ -1,4 +1,9 @@
 package com.exemple.repository;
 
-public interface LeitorRepository {
+import com.exemple.model.LeitorModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface LeitorRepository extends JpaRepository<LeitorModel, UUID> {
 }
