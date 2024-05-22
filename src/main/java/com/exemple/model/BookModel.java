@@ -21,6 +21,7 @@ public class BookModel implements Serializable {
     private int pgAtual;
     private int pgFinal;
 
+
     public UUID getIdBook() {
         return idBook;
     }

@@ -17,6 +17,9 @@ public class LeituraModel  implements Serializable {
     private ArrayList lido;
     private ArrayList recomendado;
     private ArrayList planejado;
+    BookModel bookModel;
+    LeitorModel leitorModel;
+
 
     public UUID getId() {
         return id;
