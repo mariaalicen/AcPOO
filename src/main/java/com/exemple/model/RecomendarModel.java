@@ -18,6 +18,15 @@ public class RecomendarModel implements Serializable {
     BookModel bookModel;
     private String msn;
     private boolean aceitar;
+    private boolean enviar;
+
+    public boolean isEnviar() {
+        return enviar;
+    }
+
+    public void setEnviar(boolean enviar) {
+        this.enviar = enviar;
+    }
 
     public UUID getIdRecomendacao() {
         return idRecomendacao;

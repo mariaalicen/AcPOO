@@ -10,7 +10,7 @@ public class LeituraService{
     @Autowired
     private LeituraRepository leituraRepository;
 
-    public void finalLeitura(){
+    public void finalizarLeitura(){
 
     }
 

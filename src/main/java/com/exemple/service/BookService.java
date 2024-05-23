@@ -11,7 +11,7 @@ public class BookService{
     private BookRepository bookRepository;
 
     public void visualizarLivro(UUID idBook) {
-        // Implementação do método
+
     }
 
     }
