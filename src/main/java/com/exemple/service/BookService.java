@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-
+//verificar se o livro existe, mostrar livro e mostrar todos os livros
 @Service
 public class BookService{
     private final BookRepository bookRepository;
