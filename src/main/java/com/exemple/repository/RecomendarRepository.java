@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+//esta incompleto
 @Repository
 public interface RecomendarRepository extends JpaRepository<RecomendarModel, UUID> {
 }

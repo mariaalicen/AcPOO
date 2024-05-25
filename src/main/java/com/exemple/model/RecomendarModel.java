@@ -13,27 +13,26 @@ public class RecomendarModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idRecomendacao;
+    private UUID idEnvio;
+    private UUID idRecebe;
     LeitorModel leitorModel;
     BookModel bookModel;
     private String msn;
-    private boolean aceitar;
-    private boolean enviar;
 
-    public boolean isEnviar() {
-        return enviar;
+    public UUID getIdEnvioRecomendacao() {
+        return idEnvio;
     }
 
-    public void setEnviar(boolean enviar) {
-        this.enviar = enviar;
+    public void setIdEnvioRecomendacao(UUID idEnvio) {
+        this.idEnvio = idEnvio;
     }
 
-    public UUID getIdRecomendacao() {
-        return idRecomendacao;
+    public UUID getIdRecebe() {
+        return idRecebe;
     }
 
-    public void setIdRecomendacao(UUID idRecomendacao) {
-        this.idRecomendacao = idRecomendacao;
+    public void setIdRecebe(UUID idRecebRecomendacao) {
+        this.idRecebe = idRecebRecomendacao;
     }
 
     public LeitorModel getLeitorModel() {
@@ -66,5 +65,13 @@ public class RecomendarModel implements Serializable {
 
     public void setAceitar(boolean aceitar) {
         this.aceitar = aceitar;
+    }
+
+    public boolean isEnviar() {
+        return enviar;
+    }
+
+    public void setEnviar(boolean enviar) {
+        this.enviar = enviar;
     }
 }

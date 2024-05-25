@@ -13,8 +13,7 @@ private static final long serialVersionUID = 1L;
 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idLeitor;
-    private String email;
-    private String nome;
+    private String login;
     private String senha;
 
     public UUID getIdLeitor() {
@@ -25,21 +24,14 @@ private static final long serialVersionUID = 1L;
         this.idLeitor = idLeitor;
     }
 
-    public String getEmail() {
+    public String getLogin() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setLogin(String login) {
         this.email = email;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getSenha() {
         return senha;

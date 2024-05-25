@@ -21,6 +21,25 @@ public class BookModel implements Serializable {
     private int pgAtual;
     private int pgFinal;
 
+    @ManyToOne
+    private LeitorModel leitor;
+    private String categoria;
+
+    public LeitorModel getLeitor() {
+        return leitor;
+    }
+
+    public void setLeitor(LeitorModel leitor) {
+        this.leitor = leitor;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
     public UUID getIdBook() {
         return idBook;
