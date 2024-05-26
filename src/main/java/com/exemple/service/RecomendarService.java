@@ -9,62 +9,61 @@ import com.exemple.repository.RecomendarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.List;
 
 @Service
 public class RecomendarService {
+    @Autowired
     private final RecomendarRepository recomendarRepository;
     private final BookRepository bookRepository;
     private final LeitorRepository leitorRepository;
+    private final RecomendarModel recomendarModel;
 
-    @Autowired
-    public RecomendarService(BookRepository bookRepository, LeitorRepository leitorRepository){
+    public RecomendarService(RecomendarRepository recomendarRepository, BookRepository bookRepository, LeitorRepository leitorRepository, RecomendarModel recomendarModel) {
+        this.recomendarRepository = recomendarRepository;
         this.bookRepository = bookRepository;
         this.leitorRepository = leitorRepository;
-        this.recomendarRepository = bookRepository;
+        this.recomendarModel = recomendarModel;
     }
-    public String enviarRecomendacao(UUID idBook, String login, String msn) {
-        //Verifica se existe no banco de dados
-    Optional<BookModel> bookModelOptional = bookRepository.findById(idBook);
-    Optional<LeitorModel> leitorModelOptional = leitorRepository.findByLogin(Login);
 
-    if(bookModelOptional.isPresent() && leitorModelOptional.isPresent()){
+
+    public String enviarRecomendacao(UUID idBook, String login, String msn) {
+    // Verifica se livro e leitor existem
+    Optional<BookModel> bookModelOptional = bookRepository.findById(idBook);
+    Optional<LeitorModel> leitorModelOptional = leitorRepository.findByLogin(login);
+
+    if (bookModelOptional.isPresent() && leitorModelOptional.isPresent()) {
+        if (recomendacaoJaEnviada(bookModelOptional.get(), leitorModelOptional.get())) {
+            return "Recomendação já enviada";
+        }
+
         RecomendarModel recomendar = new RecomendarModel(bookModelOptional.get(), leitorModelOptional.get(), msn);
-        //salvar no banco de dados
         recomendarRepository.save(recomendar);
         return "Envio realizado com sucesso";
-    }else{
+    } else {
         return "Livro ou leitor não encontrado";
     }
-    }
-    public String evitarDuplicatas(UUID idEnvio){
-        Optional<recomendacao> recomendacaoOptional = RecomendarRepository.finalByidEnvio(idEnvio);
-        if (recomendacaoOptional.isPresent()){
-            if (recomendarModel.getIdEnvio().equals(idEnvio)) {
-                return "Recomendacao já enviada";
-                }else{
-                return "Recomendacao não enocntrada";
-            }
-        }
-    }
-    //buscar recomendacao
-    public List<RecomendarModel> buscarRecebidas(String login){
-        return recomendarRepository.findBylogin(login);
-    }
-    // Método para visualizar uma recomendação
-    public String visualizarRecomendacao(UUID idEnvio) {
-        Optional<Recomendar> recomendacaoOptional = recomendarRepository.findByIdEnvio(idEnvio);
-        if (recomendacaoOptional.isPresent()) {
-            Recomendar recomendar = recomendacaoOptional.get();
-            recomendar.setVisualizado(true);
-            recomendarRepository.save(recomendar);
-            return "Recomendação visualizada: " + recomendar.getMsn();
-        } else {
-            return "Recomendação não encontrada.";
-        }
-    }
-
 }
 
+private boolean recomendacaoJaEnviada(BookModel book, LeitorModel leitor) {
+    return recomendarRepository.existsByBookAndLeitor(book, leitor);
+}
+
+public List<RecomendarModel> buscarRecebidas(String login) {
+    return recomendarRepository.findByLeitor_Login(login);
+}
+
+public String visualizarRecomendacao(UUID idEnvio) {
+    Optional<RecomendarModel> recomendacaoOptional = recomendarRepository.findByIdEnvio(idEnvio);
+    if (recomendacaoOptional.isPresent()) {
+        RecomendarModel recomendar = recomendacaoOptional.get();
+        recomendar.setVisualizado(true);
+        recomendarRepository.save(recomendar);
+        return "Recomendação visualizada: " + recomendar.getMsn();
+    } else {
+        return "Recomendação não encontrada.";
+    }
+}
+}

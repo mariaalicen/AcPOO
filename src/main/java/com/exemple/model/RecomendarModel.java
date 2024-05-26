@@ -1,5 +1,6 @@
 package com.exemple.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -7,32 +8,27 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.UUID;
 
-
+@Entity
 public class RecomendarModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idEnvio;
-    private UUID idRecebe;
     LeitorModel leitorModel;
     BookModel bookModel;
     private String msn;
+    private boolean visualizado;
 
-    public UUID getIdEnvioRecomendacao() {
+    public RecomendarModel(BookModel bookModel, LeitorModel leitorModel, String msn) {
+    }
+
+    public UUID getIdEnvio() {
         return idEnvio;
     }
 
-    public void setIdEnvioRecomendacao(UUID idEnvio) {
+    public void setIdEnvio(UUID idEnvio) {
         this.idEnvio = idEnvio;
-    }
-
-    public UUID getIdRecebe() {
-        return idRecebe;
-    }
-
-    public void setIdRecebe(UUID idRecebRecomendacao) {
-        this.idRecebe = idRecebRecomendacao;
     }
 
     public LeitorModel getLeitorModel() {
@@ -59,19 +55,13 @@ public class RecomendarModel implements Serializable {
         this.msn = msn;
     }
 
-    public boolean isAceitar() {
-        return aceitar;
+    public boolean isVisualizado() {
+        return visualizado;
     }
 
-    public void setAceitar(boolean aceitar) {
-        this.aceitar = aceitar;
-    }
-
-    public boolean isEnviar() {
-        return enviar;
-    }
-
-    public void setEnviar(boolean enviar) {
-        this.enviar = enviar;
+    public void setVisualizado(boolean visualizado) {
+        this.visualizado = visualizado;
     }
 }
+
+

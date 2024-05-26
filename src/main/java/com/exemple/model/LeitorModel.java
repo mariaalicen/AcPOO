@@ -25,11 +25,11 @@ private static final long serialVersionUID = 1L;
     }
 
     public String getLogin() {
-        return email;
+        return login;
     }
 
     public void setLogin(String login) {
-        this.email = email;
+        this.login = login;
     }
 
 

@@ -18,8 +18,6 @@ public class BookModel implements Serializable {
     private String author;
     private String sinopse;
     private int avaliacao;
-    private int pgAtual;
-    private int pgFinal;
 
     @ManyToOne
     private LeitorModel leitor;
@@ -81,19 +79,4 @@ public class BookModel implements Serializable {
         this.avaliacao = avaliacao;
     }
 
-    public int getPgAtual() {
-        return pgAtual;
-    }
-
-    public void setPgAtual(int pgAtual) {
-        this.pgAtual = pgAtual;
-    }
-
-    public int getPgFinal() {
-        return pgFinal;
-    }
-
-    public void setPgFinal(int pgFinal) {
-        this.pgFinal = pgFinal;
-    }
 }

@@ -1,14 +1,19 @@
 package com.exemple.service;
 
+import com.exemple.model.BookModel;
+import com.exemple.model.LeitorModel;
 import com.exemple.repository.BookRepository;
 import com.exemple.repository.LeitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-//verificar se o livro existe, mostrar livro e mostrar todos os livros
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.List;
+
 @Service
-public class BookService{
+public class BookService {
     private final BookRepository bookRepository;
     private final LeitorRepository leitorRepository;
 
@@ -17,43 +22,30 @@ public class BookService{
         this.bookRepository = bookRepository;
         this.leitorRepository = leitorRepository;
     }
-    public String adicionarLivro(Long idBook, String loginLeitor, int pgInicial, int pgFinal) {
+    public String VisualizarLivro(UUID idBook) {
         Optional<BookModel> bookOptional = bookRepository.findById(idBook);
-        Optional<LeitorModel> leitorOptional = leitorRepository.findByLogin(loginLeitor);
-
-        if (bookOptional.isPresent() && leitorOptional.isPresent()) {
+        if (bookOptional.isPresent()) {
             BookModel book = bookOptional.get();
-            LeitorModel leitor = leitorOptional.get();
-
-            book.setLeitor(leitor);
-            book.setPgInicial(pgInicial);
-            book.setPgFinal(pgFinal);
-            book.setCategoria(definirCategoriaLivro(pgInicial, pgFinal));
-
-            bookRepository.save(book);
-            return "Livro adicionado com sucesso.";
+            return "ID: " + book.getIdBook() +
+                    "\nTítulo: " + book.getTitle() +
+                    "\nAutor: " + book.getAuthor() +
+                    "\nSinopse: " + book.getSinopse();
         } else {
-            return "Livro ou leitor não encontrado.";
+            return "Livro não encontrado.";
         }
     }
 
-    private String definirCategoriaLivro(int pgInicial, int pgFinal) {
-        if (pgInicial == 0) {
-            return "PLANEJADO";
-        } else if (pgInicial > 0 && pgInicial < pgFinal) {
-            return "LENDO";
-        } else {
-            return "LIDO";
+    public String listarTodosOsLivros() {
+        List<BookModel> books = bookRepository.findAll();
+        if (books.isEmpty()) {
+            return "Nenhum livro encontrado.";
         }
+        return books.stream()
+                .map(book -> "ID: " + book.getIdBook() +
+                        "\nTítulo: " + book.getTitle() +
+                        "\nAutor: " + book.getAuthor() +
+                        "\nSinopse: " + book.getSinopse())
+                .collect(Collectors.joining("\n\n"));
     }
+}
 
-    public List<BookModel> listarLivrosPorCategoria(String loginLeitor, String categoria) {
-        List<BookModel> livros = bookRepository.findByLeitor_LoginAndCategoria(loginLeitor, categoria);
-        if (livros.isEmpty()) {
-            return Collections.emptyList(); // Retorna lista vazia se não houver livros na categoria
-        } else {
-            return livros;
-        }
-    }
-
-    }

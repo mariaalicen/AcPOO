@@ -19,7 +19,40 @@ public class LeituraModel  implements Serializable {
     private ArrayList planejado;
     BookModel bookModel;
     LeitorModel leitorModel;
+    private int pgInicial;
+    private int pgFinal;
 
+    public int getPgInicial() {
+        return pgInicial;
+    }
+
+    public void setPgInicial(int pgInicial) {
+        this.pgInicial = pgInicial;
+    }
+
+    public int getPgFinal() {
+        return pgFinal;
+    }
+
+    public void setPgFinal(int pgFinal) {
+        this.pgFinal = pgFinal;
+    }
+
+    public BookModel getBookModel() {
+        return bookModel;
+    }
+
+    public void setBookModel(BookModel bookModel) {
+        this.bookModel = bookModel;
+    }
+
+    public LeitorModel getLeitorModel() {
+        return leitorModel;
+    }
+
+    public void setLeitorModel(LeitorModel leitorModel) {
+        this.leitorModel = leitorModel;
+    }
 
     public UUID getId() {
         return id;
