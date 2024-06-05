@@ -4,21 +4,14 @@ import com.exemple.model.BookModel;
 import com.exemple.repository.BookRepository;
 import com.exemple.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-//Configurando mockito
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+
 import org.mockito.junit.jupiter.MockitoExtension;
-//Configurando padrõesJava das classeBook
-import java.util.List;
-import java.util.Optional;
-import java.util.Arrays;
-import java.util.UUID;
-//Configurando importações staticas
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 public class
@@ -27,15 +20,34 @@ private BookService bookService;
 @Mock
 private BookRepository bookRepository;
 
+BookModel<Integer> livros;
+
+//Não entendi a relação dps testes com as classes, tendo os testes eunão preciso implementar alguns metodos? so excessões?
+
+//Realiza metodo antes dos testes
 @BeforeEach
-public void setUp(){
-    MockitoAnnotations.openMocks(this);
+//Instanciar objeto
+public void instancia(){
+    livros = new BookModel();
 }
 @Test
-public void testLivroExiste(){
-    UUID idbook = UUID.randomUUI();
-    BookModel =
-}
+@DisplayName("Verifica se o livro existe")
+public void verificaExistencia(){
 
+}
+@Test
+public void tratarExcessaoExistencia(){
+
+}
+@Test
+public void testVisualizaLivro(){
+
+}
+@Test
+public void testnaoVazioLista(){
+
+}
+@Test
+public void tesRemovElem(){
 
 }
