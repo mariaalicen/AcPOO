@@ -6,37 +6,34 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table( name = "TB BOOK")
-
+@Table(name = "TB_BOOK")
 public class BookModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idBook;
+
     private String title;
     private String author;
     private String sinopse;
-    private int avaliacao;
+    private String categoria;
 
     @ManyToOne
     private LeitorModel leitor;
-    private String categoria;
 
-    public LeitorModel getLeitor() {
-        return leitor;
-    }
-
-    public void setLeitor(LeitorModel leitor) {
+    // Construtor parametrizado
+    public BookModel(UUID idBook, String title, String author, String sinopse, String categoria, LeitorModel leitor) {
+        this.idBook = idBook;
+        this.title = title;
+        this.author = author;
+        this.sinopse = sinopse;
+        this.categoria = categoria;
         this.leitor = leitor;
     }
+    //Construtor para JPA
+    public BookModel() {
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public UUID getIdBook() {
@@ -71,12 +68,19 @@ public class BookModel implements Serializable {
         this.sinopse = sinopse;
     }
 
-    public int getAvaliacao() {
-        return avaliacao;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
+    public LeitorModel getLeitor() {
+        return leitor;
+    }
+
+    public void setLeitor(LeitorModel leitor) {
+        this.leitor = leitor;
+    }
 }

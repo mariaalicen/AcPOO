@@ -6,15 +6,28 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB LEITOR")
+@Table(name = "TB_LEITOR")
 public class LeitorModel implements Serializable {
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idLeitor;
+
     private String login;
     private String senha;
+
+
+    public LeitorModel() {
+    }
+
+
+    public LeitorModel(UUID idLeitor, String login, String senha) {
+        this.idLeitor = idLeitor;
+        this.login = login;
+        this.senha = senha;
+    }
+
 
     public UUID getIdLeitor() {
         return idLeitor;
@@ -31,7 +44,6 @@ private static final long serialVersionUID = 1L;
     public void setLogin(String login) {
         this.login = login;
     }
-
 
     public String getSenha() {
         return senha;

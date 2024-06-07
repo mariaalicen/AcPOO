@@ -3,39 +3,48 @@ package com.exemple.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB Leitura")
-public class LeituraModel  implements Serializable {
+@Table(name = "TB_LEITURA")
+public class LeituraModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private ArrayList lido;
-    private ArrayList recomendado;
-    private ArrayList planejado;
-    BookModel bookModel;
-    LeitorModel leitorModel;
+
+    // Relacionamento com BookModel
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private BookModel bookModel;
+
+    // Relacionamento com LeitorModel
+    @ManyToOne
+    @JoinColumn(name = "leitor_id")
+    private LeitorModel leitorModel;
+
     private int pgInicial;
     private int pgFinal;
 
-    public int getPgInicial() {
-        return pgInicial;
+
+    public LeituraModel() {
     }
 
-    public void setPgInicial(int pgInicial) {
+    public LeituraModel(UUID id, BookModel bookModel, LeitorModel leitorModel, int pgInicial, int pgFinal) {
+        this.id = id;
+        this.bookModel = bookModel;
+        this.leitorModel = leitorModel;
         this.pgInicial = pgInicial;
-    }
-
-    public int getPgFinal() {
-        return pgFinal;
-    }
-
-    public void setPgFinal(int pgFinal) {
         this.pgFinal = pgFinal;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public BookModel getBookModel() {
@@ -54,35 +63,20 @@ public class LeituraModel  implements Serializable {
         this.leitorModel = leitorModel;
     }
 
-    public UUID getId() {
-        return id;
+    public int getPgInicial() {
+        return pgInicial;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setPgInicial(int pgInicial) {
+        this.pgInicial = pgInicial;
     }
 
-    public ArrayList getLido() {
-        return lido;
+    public int getPgFinal() {
+        return pgFinal;
     }
 
-    public void setLido(ArrayList lido) {
-        this.lido = lido;
-    }
-
-    public ArrayList getRecomendado() {
-        return recomendado;
-    }
-
-    public void setRecomendado(ArrayList recomendado) {
-        this.recomendado = recomendado;
-    }
-
-    public ArrayList getPlanejado() {
-        return planejado;
-    }
-
-    public void setPlanejado(ArrayList planejado) {
-        this.planejado = planejado;
+    public void setPgFinal(int pgFinal) {
+        this.pgFinal = pgFinal;
     }
 }
+
