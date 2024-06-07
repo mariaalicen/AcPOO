@@ -12,8 +12,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
 
-import static java.util.stream.Nodes.collect;
-
 //Criar metodos
 @Service
 public class BookService {
@@ -38,11 +36,8 @@ public class BookService {
         }
     }
 
-    public String listarTodosOsLivros() {
-        public List<BookModel> findAll() {
+    public List<BookModel> findAll() {
             return bookRepository.findAll();
-        }    .collect(Collectors.joining("\n\n"));
+        }
     }
-
-}
 

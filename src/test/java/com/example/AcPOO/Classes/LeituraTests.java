@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class RecomendacaoServiceTest {
+public class RecomendarServiceTest {
 
     @Autowired
     private RecomendarRepository recomendacaoRepository;
@@ -72,4 +72,3 @@ public class RecomendacaoServiceTest {
         assertEquals("Recomendação já enviada", exception.getMessage());
     }
 }
-    }

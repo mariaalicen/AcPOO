@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class LeitorService {
+    /*
     @Autowired
     private LeitorRepository leitorRepository;
 
@@ -32,5 +33,7 @@ public class LeitorService {
         novoLeitor.setSenha(senha);
         leitorRepository.save(novoLeitor);
     }
+    /*
+     */
 }
 

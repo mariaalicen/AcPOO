@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class LeituraService {
-
+/*
     @Autowired
     private LeituraRepository leituraRepository;
 
@@ -56,4 +56,6 @@ public class LeituraService {
                         "\nCategoria: " + definirCategoriaLivro(leitura.getPgInicial(), leitura.getPgFinal()))
                 .collect(Collectors.joining("\n\n"));
     }
+    /*
+ */
 }

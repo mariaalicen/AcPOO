@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Service
 public class RecomendarService {
+    /*
     @Autowired
     private final RecomendarRepository recomendarRepository;
     private final BookRepository bookRepository;
@@ -66,4 +67,6 @@ public String visualizarRecomendacao(UUID idEnvio) {
         return "Recomendação não encontrada.";
     }
 }
+/*
+     */
 }
